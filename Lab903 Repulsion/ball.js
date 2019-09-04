@@ -34,16 +34,16 @@ function Ball(location, velocity, radius, col){
           var steeringForce = p5.Vector.sub(Atract.loc, this.loc);
           steeringForce.normalize();
           steeringForce.mult(0.5);
-          this.vel.add(steeringForce);
+          this.vel.add(steeringForce);//this does the atraction/ repulsion
   
         }
         if(d < 50){
           var steeringForce = p5.Vector.sub(this.loc, Atract.loc);
           steeringForce.normalize();
           steeringForce.mult(0.5);
-          this.vel.add(steeringForce);
+          this.vel.add(steeringForce);//this also does attraction and repulsion
         }
-        this.loc.add(this.vel);
+        this.loc.add(this.vel);//gravity assist
   
       }
   

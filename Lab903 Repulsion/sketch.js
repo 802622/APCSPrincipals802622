@@ -13,7 +13,7 @@ function setup() {
 }
 
 function loadBalls(numBalls){
-  for(q=0;q<x;q++){
+  for(q=0;q<x;q++){//the right way to do a loop
     var location = createVector(random(width), random(height));
     var velocity = createVector(random(-2,2), random(-2,2));
     var col = color(random(255), random(255), random(255));
@@ -32,7 +32,7 @@ function draw() {
   for(var i = 0; i < balls.length; i++){
     balls[i].run();
   }
-  Atract.run();
+  Atract.run();//getting the big ball
 }
 
 function ballsDraw(){
