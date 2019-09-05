@@ -1,55 +1,63 @@
-function Ball(location, velocity, radius, col){
-    this.loc = location;
-    this.vel = velocity;
-    this.rad = radius;
-    this.col = col;
-    this.acc = createVector(0, 0.5);
 
-  this.run = function(){//use this so you dont have to run all of these for each ball
+class Ball {
+  constructor(x, y, dx, dy, id) {
+    this.clr = color(random(255), random(255), random(255));
+    this.loc = createVector(x, y);
+    this.vel = createVector(dx, dy);
+    this.id = id;
+    this.acc = createVector(0, .1);
+
+    this.run = function () {
       this.checkEdges();
       this.update();
       this.render();
     }
-    this.checkEdges = function(){//check if touching edge, if so reverse direction
-      if(this.loc.x < 0){
-        this.vel.x = -this.vel.x;//left
+
+    this.checkEdges = function () {
+      if (this.loc.x < 0) {
+        this.vel.x = -this.vel.x; //left
       }
-      if(this.loc.x > width){//right
+      if (this.loc.x > width) { //right
         this.vel.x = -this.vel.x;
       }
-      if(this.loc.y < 0){//down
+      if (this.loc.y < 0) { //down
         this.vel.y = -this.vel.y;
       }
-      if(this.loc.y > height){//up
+      if (this.loc.y > height) { //up
         this.vel.y = -this.vel.y;
       }
     }
-    this.update=function(){//update location
-      this.vel.add(this.acc);
-      this.loc.add(this.vel);//add velocity to make gravity
+    this.update = function () {
+      // this.vel.add(this.acc);
 
-      if(this !== Atract){
-        var d = this.loc.dist(Atract.loc);
-        if(d > 150){
-          var steeringForce = p5.Vector.sub(Atract.loc, this.loc);
-          steeringForce.normalize();
-          steeringForce.mult(0.5);
-          this.vel.add(steeringForce);//this does the atraction/ repulsion
-  
+      if (id = -1) {
+        var dist = this.loc.dist(mainBall.loc);
+        if (dist < 250) {
+          this.Force = p5.Vector.sub(mainBall.loc, this.loc);
+          this.Force.normalize();
+          this.Force.mult(0.8);
+          this.vel.add(this.Force);
         }
-        if(d < 50){
-          var steeringForce = p5.Vector.sub(this.loc, Atract.loc);
-          steeringForce.normalize();
-          steeringForce.mult(0.5);
-          this.vel.add(steeringForce);//this also does attraction and repulsion
+        if (dist < 150) {
+          this.Force = p5.Vector.sub(this.loc, mainBall.loc);
+          // this.Force.normalize();
+          this.Force.mult(0.8);
+          this.vel.add(this.Force);
         }
-        this.loc.add(this.vel);//gravity assist
-  
+        //this.loc.add(this.vel); //add velocity to make gravity
       }
-  
+        this.vel.limit(3);
+
+       this.loc.add(this.vel);
     }
-    this.render = function(){//render one frame
-      fill(this.col);
-      ellipse(this.loc.x, this.loc.y, this.rad, this.rad);//render ball, change if you want other shapes
-    }
+    this.render = function () {
+      fill(this.clr);
+      if (this.id>-1){
+      ellipse(this.loc.x, this.loc.y, 10, 10); //render ball, change if you want other shapes
+    } else{
+    fill(this.clr);
+    ellipse(this.loc.x, this.loc.y, 50, 50);
   }
+  }
+}
+}

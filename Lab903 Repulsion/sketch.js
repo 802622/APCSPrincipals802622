@@ -3,42 +3,42 @@
 //  Project 8/22
 
 var balls = [];
+var mainBall;
 var x = prompt("Number of Balls","42"); //user entered number of balls page dialog
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  loadBalls(200);
+  loadBalls(x);
 }
 
-function loadBalls(numBalls){
-  for(q=0;q<x;q++){//the right way to do a loop
-    var location = createVector(random(width), random(height));
-    var velocity = createVector(random(-2,2), random(-2,2));
-    var col = color(random(255), random(255), random(255));
-    balls.push(new Ball(location, velocity, 15, col));
-    }
-  var location = createVector(400, 400);
-  var velocity = createVector(random(-2,2), random(-2,2));
-  var col = color(255, 255, 255);
-  Atract = new Ball(location, velocity, 50, col);
+function loadBalls(n){
+  for(q=0;q<x;q++){
+    mainBall = new Ball(400, 400, 50, 50, -1)
+    balls[q] = new Ball(random(800), random(800), random(-3, 3), random(-3, 3), q);
+  //   for(var i =0; i < n; i++){
+
+  //   }
+  // }
+  }
 }
 
 
 function draw() {
   //for(i=1;i<3;i++){} put other function inside this to run at 60fps
-  background(5, 5, 5,20);
+  background(5, 5, 5);
   for(var i = 0; i < balls.length; i++){
     balls[i].run();
-  }
-  Atract.run();//getting the big ball
+  } mainBall.run();
 }
 
 function ballsDraw(){
-  background(5,5,5,50)//get trails back but just a little bit
+  background(5,5,5)//get trails back but just a little bit
+if (this.id != -1){
   for(i=0;i<x;i++){
 balls[i].run();
+  }
 }
 }
 
