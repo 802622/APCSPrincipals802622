@@ -28,26 +28,25 @@ class Ball {
       }
     }
     this.update = function () {
-      // this.vel.add(this.acc);
-
-      if (id = -1) {
+      if (id != -1) {
         var dist = this.loc.dist(mainBall.loc);
-        if (dist < 250) {
+        if (dist > 250) {
           this.Force = p5.Vector.sub(mainBall.loc, this.loc);
           this.Force.normalize();
           this.Force.mult(0.8);
           this.vel.add(this.Force);
+          this.vel.add(this.acc);
         }
         if (dist < 150) {
           this.Force = p5.Vector.sub(this.loc, mainBall.loc);
-          // this.Force.normalize();
+          this.Force.normalize();
           this.Force.mult(0.8);
           this.vel.add(this.Force);
+          this.vel.add(this.acc);
         }
-        //this.loc.add(this.vel); //add velocity to make gravity
+        this.loc.add(this.vel); //add velocity to make gravity
       }
-        this.vel.limit(3);
-
+        this.vel.limit(2);
        this.loc.add(this.vel);
     }
     this.render = function () {

@@ -15,18 +15,13 @@ function setup() {
 
 function loadBalls(n){
   for(q=0;q<x;q++){
-    mainBall = new Ball(400, 400, 50, 50, -1)
+    mainBall = new Ball(100, 500, 50, 50, -1)
     balls[q] = new Ball(random(800), random(800), random(-3, 3), random(-3, 3), q);
-  //   for(var i =0; i < n; i++){
-
-  //   }
-  // }
   }
 }
 
 
 function draw() {
-  //for(i=1;i<3;i++){} put other function inside this to run at 60fps
   background(5, 5, 5);
   for(var i = 0; i < balls.length; i++){
     balls[i].run();
@@ -41,4 +36,3 @@ balls[i].run();
   }
 }
 }
-
