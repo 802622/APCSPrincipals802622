@@ -30,29 +30,22 @@ class Triangle {
         if (id > -1) {
         var dist2 = this.loc.dist(secondBall.loc);
           var dist = this.loc.dist(mainBall.loc);
-          if (dist > 450) {
-            this.Force = p5.Vector.sub(mainBall.loc, this.loc);
+          if (dist > 11&&dist < 350) {
+            this.Force = p5.Vector.sub(mainBall.loc, this.loc);//attract
             this.Force.normalize();
-            this.Force.mult(0.8);
+            this.Force.mult(0.6);
             this.vel.add(this.Force);
             this.vel.add(this.acc);
           }
-          if (dist < 1) {
-            this.Force = p5.Vector.sub(this.loc, mainBall.loc);
+          if (dist < 11) {
+            this.Force = p5.Vector.sub(this.loc, mainBall.loc);//push
             this.Force.normalize();
             this.Force.mult(0.8);
             this.vel.add(this.Force);
             this.vel.add(this.acc);
           }   
-        // if (dist2 > 250) {
-        //     this.Force = p5.Vector.sub(secondBall.loc, this.loc);
-        //     this.Force.normalize();
-        //     this.Force.mult(0.8);
-        //     this.vel.add(this.Force);
-        //     this.vel.add(this.acc);
-        //   }
-          if (dist2 < 350) {
-            this.Force = p5.Vector.sub(this.loc, secondBall.loc);
+          if (dist2 > 1&&dist2 < 350) {
+            this.Force = p5.Vector.sub(this.loc, secondBall.loc);//push
             this.Force.normalize();
             this.Force.mult(0.8);
             this.vel.add(this.Force);
@@ -64,8 +57,6 @@ class Triangle {
          this.loc.add(this.vel);
       }
       this.render = function () {
-          //PushManager()
-          //translate(this.loc.x, this.loc.y)
         fill(this.clr);
         if (this.id>-1){
           var a = this.loc.x+10;
@@ -73,15 +64,8 @@ class Triangle {
           var i = this.loc.x+5;
           var j = this.loc.y+10
         triangle(this.loc.x, this.loc.y, a,b,i,j); //render ball, change if you want other shapes
-      } else{
-    //   fill(this.clr);
-      var a = this.loc.x+50;
-      var b = this.loc.y+80;
-      var i = this.loc.x+150;
-      var j = this.loc.y+10;
-      triangle(this.loc.x, this.loc.y, a, b,i,j);
-    }
+      }
     }
   }
-  }
+}
   

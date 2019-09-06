@@ -12,19 +12,18 @@ class Ball {
       this.update();
       this.render();
     }
-
     this.checkEdges = function () {
       if (this.loc.x < 0) {
-        this.vel.x = -this.vel.x; //left
+        this.vel.x = -this.vel.x*random()*3; //left
       }
       if (this.loc.x > width) { //right
-        this.vel.x = -this.vel.x;
+        this.vel.x = -this.vel.x*random()*2;
       }
       if (this.loc.y < 0) { //down
-        this.vel.y = -this.vel.y;
+        this.vel.y = -this.vel.y*random()*2;
       }
       if (this.loc.y > height) { //up
-        this.vel.y = -this.vel.y;
+        this.vel.y = -this.vel.y*random()*2;
       }
     }
     this.update = function () {
