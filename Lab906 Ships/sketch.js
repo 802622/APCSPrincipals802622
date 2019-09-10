@@ -4,7 +4,7 @@
 
 var balls = [];
 var mainBall;
-var x = prompt("Number of Balls","42"); //user entered number of balls page dialog
+var x = prompt("Number of Triangles","42"); //user entered number of balls page dialog
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);

@@ -11,6 +11,7 @@ class Ball{
       this.update();
       this.render();
       this.paddle();
+      this.win();
     }
     checkEdges(){//check if touching edge, if so reverse direction
       if(this.loc.x < 0){
@@ -28,15 +29,23 @@ class Ball{
     }
     paddle(){
       var d = mouseY;
-      if(this.loc.x < 30&&d-50<this.loc.y<d+50){
-        console.log(p)
+      //if(this.loc.x > 30&&(d-50<this.loc.y)||(this.loc.y<d+50)){
+        if((this.loc.y>=(d-50)&&(d+50)>=this.loc.y)&&this.loc.x < 31){
         p++;
+        console.log("Score is " + p)
+        document.getElementById("score").innerHTML = p;
         this.vel.x = -this.vel.x;
       }
     }
     update(){//update location
       //this.vel.add(this.acc); //add velocity to make gravity
       this.loc.add(this.vel);
+    }
+    win(){
+      if(p>1){
+        cnv.font = '48px serif';
+        cnv.fillText('Hello world', 10, 50);
+      }
     }
     render(){//render one frame
       fill(this.clr);
