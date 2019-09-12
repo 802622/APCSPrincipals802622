@@ -24,7 +24,7 @@ class Ball{
         this.vel.y = -this.vel.y;
       }
       if(this.loc.y > height){//up
-        this.vel.y = -this.vel.y;
+        this.vel.y = -this.vel.y;//bounce ball
       }
     }
     paddle(){
