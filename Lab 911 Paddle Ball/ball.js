@@ -1,7 +1,7 @@
 var p = 0;
 var t = (prompt("What do ypu want to play to?", 2))-1;
-class Ball{
-    constructor(x,y,dx,dy){
+class Ball{//to make new balls easy to add more 
+    constructor(x,y,dx,dy){ //constructor to start things off and make ball
       this.loc = createVector(x, y);//create a vector for ball's position
       this.vel = createVector(dx, dy);//create a vector for movment for the ball
       this.clr = color(random(255),random(255),random(255));//create random color for the ball
