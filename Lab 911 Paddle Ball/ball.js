@@ -14,11 +14,11 @@ class Ball{
       this.win();
     }
     checkEdges(){//check if touching edge, if so reverse direction
-      if(this.loc.x < 0){
-        this.vel.x = -this.vel.x;//left
+      if(this.loc.x < 0){//left
+        this.vel.x = -this.vel.x;//bounce ball
       }
       if(this.loc.x > width){//right
-        this.vel.x = -this.vel.x;
+        this.vel.x = -this.vel.x;//bounce ball
       }
       if(this.loc.y < 0){//down
         this.vel.y = -this.vel.y;//bounce ball
@@ -40,8 +40,8 @@ class Ball{
     update(){//update location
       this.loc.add(this.vel);//move things
     }
-    win(){
-      if(p>t){
+    win(){//check for win
+      if(p>t){//set win condition
         background(5,5,255);//wipe background make blue
         var w = "You Win!";//win string
         textSize(80);//make text fit
