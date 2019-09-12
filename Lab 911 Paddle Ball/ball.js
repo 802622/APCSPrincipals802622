@@ -2,9 +2,9 @@ var p = 0;
 var t = (prompt("What do ypu want to play to?", 2))-1;
 class Ball{
     constructor(x,y,dx,dy){
-      this.loc = createVector(x, y);
-      this.vel = createVector(dx, dy);
-      this.clr = color(random(255),random(255),random(255));
+      this.loc = createVector(x, y);//create a vector for ball's position
+      this.vel = createVector(dx, dy);//create a vector for movment for the ball
+      this.clr = color(random(255),random(255),random(255));//create random color for the ball
     }
     run(){//use this so you dont have to run all of these for each ball
       this.checkEdges();
