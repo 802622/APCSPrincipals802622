@@ -1,9 +1,10 @@
-var p = 0;
-class Ball{
-    constructor(x,y,dx,dy){
-      this.loc = createVector(x, y);
-      this.vel = createVector(dx, dy);
-      this.clr = color(random(255),random(255),random(255));
+var p = 0;//because non global varriables are hard
+var t = (prompt("What do ypu want to play to?", 2))-1;//win condition user entered for testing
+class Ball{//to make new balls easy to add more 
+    constructor(x,y,dx,dy){ //constructor to start things off and make ball
+      this.loc = createVector(x, y);//create a vector for ball's position
+      this.vel = createVector(dx, dy);//create a vector for movment for the ball
+      this.clr = color(random(255),random(255),random(255));//create random color for the ball
     }
     run(){//use this so you dont have to run all of these for each ball
       this.checkEdges();
@@ -13,17 +14,17 @@ class Ball{
       this.win();
     }
     checkEdges(){//check if touching edge, if so reverse direction
-      if(this.loc.x < 0){
-        this.vel.x = -this.vel.x;//left
+      if(this.loc.x < 0){//left
+        this.vel.x = -this.vel.x;//bounce ball
       }
       if(this.loc.x > width){//right
-        this.vel.x = -this.vel.x;
+        this.vel.x = -this.vel.x;//bounce ball
       }
       if(this.loc.y < 0){//down
-        this.vel.y = -this.vel.y;
+        this.vel.y = -this.vel.y;//bounce ball
       }
       if(this.loc.y > height){//up
-        this.vel.y = -this.vel.y;
+        this.vel.y = -this.vel.y;//bounce ball
       }
     }
     paddle(){
@@ -39,8 +40,8 @@ class Ball{
     update(){//update location
       this.loc.add(this.vel);//move things
     }
-    win(){
-      if(p>1){
+    win(){//check for win
+      if(p>t){//set win condition
         background(5,5,255);//wipe background make blue
         var w = "You Win!";//win string
         textSize(80);//make text fit
