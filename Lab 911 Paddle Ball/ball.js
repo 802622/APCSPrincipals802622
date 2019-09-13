@@ -7,12 +7,12 @@ class Ball{//to make new balls easy to add more
       this.clr = color(random(255),random(255),random(255));//create random color for the ball
     }
     run(){//use this so you dont have to run all of these for each ball
-      this.checkEdges();
-      this.update();
-      this.render();
-      this.paddle();
-      this.win();
-    }
+      this.checkEdges();//bounce ball
+      this.update();//move ball
+      this.render();//drqw ball
+      this.paddle();//check if the ball hit the paddle
+      this.win();//check win condition
+    }//end run
     checkEdges(){//check if touching edge, if so reverse direction
       if(this.loc.x < 0){//left
         this.vel.x = -this.vel.x;//bounce ball
