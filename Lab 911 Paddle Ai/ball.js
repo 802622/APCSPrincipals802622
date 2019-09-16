@@ -36,8 +36,14 @@ class Ball{//to make new balls easy to add more
         fill(255, 255, 255);//make score text white
         text(p, 400, 400);//write score
         this.vel.x = -this.vel.x;//bounce ball
+        if((d-this.loc.y)>35){
+          this.vel.y = 2*this.vel.y
+        }
+        if((d-this.loc.y)<-35){
+          this.vel.y = 2*this.vel.y
+        }
       }
-      if((this.loc.y>=(g-50)&&(g+50)>=this.loc.y)&&(this.loc.x > 779)){
+      if((this.loc.y>=(g-50)&&(g+50)>=this.loc.y)&&(this.loc.x > 769)){
         p--;//incriment score
         textSize(200);//large score
         fill(255, 255, 255);//make score text white

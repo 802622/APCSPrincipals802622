@@ -4,6 +4,7 @@ class Ball{//to make new balls easy to add more
     constructor(x,y,dx,dy){ //constructor to start things off and make ball
       this.loc = createVector(x, y);//create a vector for ball's position
       this.vel = createVector(dx, dy);//create a vector for movment for the ball
+      this.acc = createVector (0, 0.2);
       this.clr = color(random(255),random(255),random(255));//create random color for the ball
     }
     run(){//use this so you dont have to run all of these for each ball
@@ -28,16 +29,18 @@ class Ball{//to make new balls easy to add more
       }
     }
     paddle(){
-      var d = mouseY;//location of paddle y
-        if((this.loc.y>=(d-50)&&(d+50)>=this.loc.y)&&(this.loc.x < 31)||(this.loc.x > 980)){//detect paddle hit
+      var d = mouseX;//location of paddle x
+        if((this.loc.x>=(d-50)&&(d+50)>=this.loc.x)&&(this.loc.y > 490)){//detect paddle hit
         p++;//incriment score
         textSize(200);//large score
         fill(255, 255, 255);//make score text white
-        text(p, 400, 400);//write score
+        text(p, 250, 400);//write score
         this.vel.x = -this.vel.x;//bounce ball
+        this.vel.y = -this.vel.y;
       }
     }
     update(){//update location
+      this.vel.add(this.acc);//gravitay
       this.loc.add(this.vel);//move things
     }
     win(){//check for win
@@ -46,7 +49,7 @@ class Ball{//to make new balls easy to add more
         var w = "You Win!";//win string
         textSize(80);//make text fit
         fill(255, 255, 255);//make win white
-        text(w, 320, 300);//write you win
+        text(w, 150, 300);//write you win
         throw new Error("won");//stop game
       }
     }

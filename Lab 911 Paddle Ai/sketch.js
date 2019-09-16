@@ -9,7 +9,7 @@ function setup() {
   ctx.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  balls[1] = new Ball(random(width),random(height),random(-5,5),random(-5,5))//make the game ball
+  balls[1] = new Ball(random(width),random(height),random(-3),random(-5))//make the game ball
   paddle1 = new Paddle(20,400);//make the paddle
   opponent = new ai(780, 400);
 }
