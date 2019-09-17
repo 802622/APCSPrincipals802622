@@ -29,7 +29,7 @@ class Ball{//to make new balls easy to add more
     }
     paddle(){
       var d = mouseY;
-      var g = balls[1].loc.y;
+      var g = opponent.loc.y;
         if((this.loc.y>=(d-50)&&(d+50)>=this.loc.y)&&(this.loc.x < 31)){//detect paddle hit
         p++;//incriment score
         textSize(200);//large score
@@ -44,6 +44,7 @@ class Ball{//to make new balls easy to add more
         }
       }
       if((this.loc.y>=(g-50)&&(g+50)>=this.loc.y)&&(this.loc.x > 769)){
+        console.log("p--")
         p--;//incriment score
         textSize(200);//large score
         fill(255, 255, 255);//make score text white

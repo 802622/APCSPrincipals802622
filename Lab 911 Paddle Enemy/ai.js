@@ -26,7 +26,6 @@ class ai{
     change(){
         var g = balls[1].loc.y;
         var f = 800 - balls[1].loc.x;
-        console.log(f);
         if(this.loc.y>g){
         this.loc.y = (this.loc.y)-((0.01*f)+1.3);//(1*d);//change in ball so the bounce on right side is a if else
         }
