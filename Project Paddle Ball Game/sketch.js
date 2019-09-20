@@ -5,13 +5,15 @@ var z = prompt("how many balls", 2)
 var balls = [];
 var l = 0;
 var t = 0;
+var I = z;
 function setup() {
   var ctx = createCanvas(600, 600);//make canvas
   ctx.position((windowWidth-width)/2, 30);//put canvas in the middle
   background(5, 5, 5);//make black background
   fill(200, 30, 150);
   for(x=0;x<z;x++){
-  balls[x] = new Ball(random(width),random(height),random(-5,5),random(-5,5))//make the game ball
+    y=x;
+  balls[x] = new Ball(random(width),random(height),random(-5,5),random(-5,5),y)//make the game ball
   }
   paddle1= new Paddle(300,500);
 }
@@ -51,10 +53,11 @@ function draw() {
     l++;
     console.log(l);
   }
-
   if(l > 139){
-  for(x=0;x<z;x++){//loop to allow for the creation of multiple balls
+  var u = balls.length-1;
+  for(x=0;x<=u;x++){//loop to allow for the creation of multiple balls
   balls[x].run();//runs the ball
+  console.log("run ball " + x);
   }
   paddle1.run();
 }

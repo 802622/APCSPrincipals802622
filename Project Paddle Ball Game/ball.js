@@ -1,12 +1,13 @@
 var p = 0;//because non global varriables are hard
-var t = (prompt("What do ypu want to play to?", 2))-1;//win condition user entered for testing
+var t = 9;//(prompt("What do ypu want to play to?", 2))-1;//win condition user entered for testing
 
 class Ball{//to make new balls easy to add more 
-    constructor(x,y,dx,dy){ //constructor to start things off and make ball
+    constructor(x,y,dx,dy,id){ //constructor to start things off and make ball
       this.loc = createVector(x, y);//create a vector for ball's position
       this.vel = createVector(dx, dy);//create a vector for movment for the ball
       this.acc = createVector (0, 0.2);
       this.clr = color(random(255),random(255),random(255));//create random color for the ball
+      this.id = id;
     }
     run(){//use this so you dont have to run all of these for each ball
       this.checkEdges();//bounce ball
@@ -32,19 +33,26 @@ class Ball{//to make new balls easy to add more
     }
     paddle(){
       var d = mouseX;//location of paddle x
+      var l = balls.length;
+      var p = I-l;//I is initial value get diffrence
+      var j = this.id-p;
         if((this.loc.x>=(d-50)&&(d+50)>=this.loc.x)&&((this.loc.y > 490)&&(this.loc.y<510))){//detect paddle hit
-        console.log(j)
           // p++;//incriment score
         // textSize(200);//large score
         // fill(255, 255, 255);//make score text white
         // text(p, 250, 400);//write score
         // this.vel.x = -this.vel.x;//bounce ball
         // this.vel.y = -this.vel.y;
-        for(var j = balls.length - 1; j >= 0; j--){
+        //for(var j = l - 1; j >= 0; j--){//balls.length
+        var g=l-(j+1);//iterate backwords with j
+        console.log(g);//things are broken because the first ball works butthen the this.id is wrong
           balls.splice(j,1)//use this because you need to read the array so figure it out individual things are refrenced check other folder
+          console.log("kill ball " + j)
+          I--;
+          console.log("I" + I);
+          //}
        }
       }
-    }
     update(){//update location
       this.vel.add(this.acc);//gravitay
       this.loc.add(this.vel);//move things
@@ -67,4 +75,9 @@ class Ball{//to make new balls easy to add more
       ellipse(this.loc.x, this.loc.y, 10, 10);//render ball, change if you want other shapes
       background(5,5,5,25);//give slight trail
     }
+    // isColiding(){
+    //   var d = mouseX;
+    //   (this.loc.x>=(d-50)&&(d+50)>=this.loc.x)&&((this.loc.y > 490)&&(this.loc.y<510))
+    //   return true;
+    // }
   }
