@@ -15,7 +15,7 @@ function setup() {
     y=x;
   balls[x] = new Ball(random(width),random(height),random(-5,5),random(-5,5),y)//make the game ball
   }
-  paddle1= new Paddle(300,500);
+  paddle= new Paddle(300,500);
 }
 
 function keyPressed() {
@@ -54,7 +54,7 @@ function draw() {
     console.log(l);
   }
   if(l > 139){
-  var u = balls.length-1;
+  var u = balls.length-1;//x++ if certain circumstances
   for(x=0;x<=u;x++){//loop to allow for the creation of multiple balls
   balls[x].run();//runs the ball
   console.log("run ball " + x);
