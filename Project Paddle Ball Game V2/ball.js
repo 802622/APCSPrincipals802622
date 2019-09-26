@@ -3,7 +3,6 @@ class Ball{//to make new balls easy to add more
       this.loc = createVector(x, y);//create a vector for ball's position
       this.vel = createVector(dx, dy);//create a vector for movment for the ball
       this.acc = createVector (0, 0.2);
-      this.clr = color(random(255),random(255),random(255));//create random color for the ball
       this.id = id;
     }
     run(){//use this so you dont have to run all of these for each ball
@@ -50,7 +49,7 @@ class Ball{//to make new balls easy to add more
       this.loc.add(this.vel);//move things
     }
     render(){//render one frame
-      fill(this.clr);//make this color
+      fill(random(10,60),random(200,240),random(200,255));//make this color
       ellipse(this.loc.x, this.loc.y, 10, 10);//render ball, change if you want other shapes
       background(5,5,5,25);//give slight trail
     }

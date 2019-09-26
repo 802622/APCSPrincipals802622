@@ -45,8 +45,8 @@ function start(){
 }
 
 function load(x){
-  for(q=0;q<x;q++){
-  balls[q] = new Ball(random(width),random(height,300),random(-5,5),random(-5,5),q)//make the game ball
+  for(q=0;q<x;q++){//r
+  balls[q] = new Ball(random(width),(random(600))/2,random(-5,5),random(-5,5),q)//make the game ball 
   }
 }
 
