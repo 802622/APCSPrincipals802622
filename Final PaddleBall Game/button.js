@@ -1,19 +1,19 @@
 class button{
     constructor(x,y,text,id){//find where to make paddle
     if(id == 1){
-      this.clr = color(255,0,0);//paddle color
+      this.clr = color(255,0,0);//button color
     }else if(id == 2){
-        this.clr = color(0,255,0);//paddle color
+        this.clr = color(0,255,0);//button color
     }else if(id == 0){
-        this.clr = color(255,255,0);//paddle color
+        this.clr = color(255,255,0);//button color
       }else{
-        this.clr = color(0,0,255);//paddle color
+        this.clr = color(0,0,255);//button color
       }
     
       this.id=id;
       this.loc = createVector(x, y);//make paddle
 
-      this.text = text;
+      this.text = text;//for the message
     }//end the constructor
     run(){//use this so you dont have to run all of these
       rectMode(CORNER);
