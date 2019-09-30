@@ -3,6 +3,7 @@
 //  Project 9/11
 var balls = [];//to make balls
 var mode="null";//to put it in start state
+var score = 0;//create a global varriable for score
 function setup() {
   var ctx = createCanvas(600, 600);//make canvas
   ctx.position((windowWidth-width)/2, 30);//put canvas in the middle
