@@ -28,6 +28,7 @@ class Ball{//to make new balls easy to add more
       for (var i = balls.length-1; i >= 0; i--){//incriment through all the balls backwards to check if you need to remove them
         if (balls[i].isColliding()){//if the ball in the loop is colliding
           balls.splice(i, 1);//remove it
+          score++;//incriment score
           if(this.vel.y<1){//if the ball is colliding with the back of the paddle
             mode = "lose";//you lose
           }
