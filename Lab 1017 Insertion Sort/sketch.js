@@ -31,5 +31,4 @@ console.log("done: " + iteration);//say finished and print array
 
 //  The draw function is called @ 30 fps
 function draw() {
-
 }

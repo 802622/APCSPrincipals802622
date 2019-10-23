@@ -35,7 +35,6 @@ while (sorting == true){//if you need to sort then
       }//this is needed so the sort dosn't end up doing a whole extra iteration sometimes
    }//stop iterating
    iteration++;//say you did one loop
-   //console.log("iteration: " + iteration + "\n arrary: " + list);//print out list at iteration to show change
 }//if sorting isnt true
 console.log("done: " + iteration);//say finished and print array
 }//end setup

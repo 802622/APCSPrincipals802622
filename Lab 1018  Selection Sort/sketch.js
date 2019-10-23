@@ -12,7 +12,7 @@ function setup() {
       array[current] = array[top];
       array[top] = tmp;}
    return array;}
-   list = shuffle(a);
+   list = shuffle(a);//set list equal to te shuffled array
    //end code from http://stackoverflow.com/questions/962802#962890
 iteration = 0;//to count how long it takes to sort
 
