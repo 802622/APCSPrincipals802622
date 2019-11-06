@@ -11,11 +11,36 @@ function setup() {
 
   food = new food();
   snake = new snake();
+
 }
 
+
+var sege = [];
 //  The draw function is called @ 30 fps
 function draw() {
   background(5, 5, 5);
 snake.run();
  food.run();
+sneke();
+
 }
+
+function sneke(){
+  for(var x=1;x<snake.last.length;x++){
+    var z = snake.seg;
+    fill(255,100,0);//make random color
+    //if(this.seg>1){
+    for(var i=0;i<(snake.seg-1);i++){
+      console.log(snake.last.length-sege.length);//this value needs to be number of snake ovments(snake.last.length)- 1 for the first, 2 for the secon and so on
+  
+      sege[i]= new snek(snake.last[(snake.last.length-sege.length)-i].x,snake.last[(snake.last.length-sege.length)-i].y);
+      //sege[i] = new snek(snake.last[((snake.last.length-sege.length)-1-i)].x,snake.last[((snake.last.length-sege.length)-1-i)].y);
+    }
+}
+
+for(var x=0;x<sege.length;x++){
+  console.log("run: "+x)
+  sege[x].run();                    //run this once sege works
+  }
+}
+
