@@ -30,15 +30,15 @@ function sneke(){
     var z = snake.seg;
     fill(255,100,0);//make random color
     //if(this.seg>1){
-    for(var i=0;i<(snake.seg-1);i++){
-      console.log(snake.last.length-sege.length);//this value needs to be number of snake ovments(snake.last.length)- 1 for the first, 2 for the secon and so on
+    for(var i=1;i<(snake.seg);i++){
+      //this value needs to be number of snake ovments(snake.last.length)- 1 for the first, 2 for the secon and so on
   
-      sege[i]= new snek(snake.last[(snake.last.length-sege.length)-i].x,snake.last[(snake.last.length-sege.length)-i].y);
-      //sege[i] = new snek(snake.last[((snake.last.length-sege.length)-1-i)].x,snake.last[((snake.last.length-sege.length)-1-i)].y);
+      //sege[i]= new snek(snake.last[(snake.last.length-sege.length)-i].x,snake.last[(snake.last.length-sege.length)-i].y);
+      sege[i] = new snek(snake.last[((snake.last.length-sege.length)-i)].x,snake.last[((snake.last.length-sege.length)-i)].y);
     }
 }
 
-for(var x=0;x<sege.length;x++){
+for(var x=1;x<sege.length;x++){
   console.log("run: "+x)
   sege[x].run();                    //run this once sege works
   }
