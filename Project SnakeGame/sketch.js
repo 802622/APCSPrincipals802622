@@ -33,6 +33,11 @@ function sneke(){
     for(var i=1;i<(snake.seg);i++){
       //this value needs to be number of snake ovments(snake.last.length)- 1 for the first, 2 for the secon and so on
   
+
+      //try iterating back to front
+
+
+
       //sege[i]= new snek(snake.last[(snake.last.length-sege.length)-i].x,snake.last[(snake.last.length-sege.length)-i].y);
       sege[i] = new snek(snake.last[((snake.last.length-sege.length)-i)].x,snake.last[((snake.last.length-sege.length)-i)].y);
     }
