@@ -5,25 +5,25 @@ pygame.font.init()
 
 
 BLACK = (0, 0, 0)
-BLUE = (36, 207, 237)#this thing has 30% cpu usage, probably do something about that
-RED = (246, 221, 73)#currently working, base game music and boosting
-#todo add loading screen explaning rules    add sound effects for boost and collisions figure out and fix bike disapering when boosting
+BLUE = (36, 207, 237)#color mathced to bike colors
+RED = (246, 221, 73)
+#add sound effects for boost and collisions figure out and fix bike disapering when boosting
 
-playerOneL = pygame.image.load('blueL.jpg')
-playerOneR = pygame.image.load('blueR.jpg')
-playerOneU = pygame.image.load('blueU.jpg')
+playerOneL = pygame.image.load('blueL.jpg')#it is very difficult to rotate an image
+playerOneR = pygame.image.load('blueR.jpg')#in pygame so I just rotated the images outside of
+playerOneU = pygame.image.load('blueU.jpg')#pygame and refrenced them here because I hate free ram
 playerOneD = pygame.image.load('blueD.jpg')
 playerTwoL= pygame.image.load('orangeL.jpg')
 playerTwoD = pygame.image.load('orangeD.jpg')
 playerTwoR = pygame.image.load('orangeR.jpg')
 playerTwoU = pygame.image.load('orangeU.jpg')
 
-song = 'wilds.ogg'
+song = 'wilds.ogg'#tron.ogg also works
 
 pygame.mixer.init()
 pygame.mixer.music.load(song)
 
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(-1)#plays the song on loop
 
 class Player:
     def __init__(self, x, y, d, c):
@@ -32,14 +32,14 @@ class Player:
         self.dir = d
         self.col = c
 
-        self.rect = pygame.Rect(self.x - 1, self.y - 1, 2, 2)
+        self.rect = pygame.Rect(self.x - 1, self.y - 1, 2, 2)#for collisions, very small
 
     def __draw__(self):
         self.rect = pygame.Rect(self.x - 1, self.y - 1, 2, 2) 
         pygame.draw.rect(screen, self.col, self.rect, 0)
-        if self.col == RED:
+        if self.col == RED:#col used to identify bike
             if self.dir == (-2*x, 0):#Left
-                screen.blit(playerOneL, (self.x-30, self.y-10))
+                screen.blit(playerOneL, (self.x-30, self.y-10))#draw the red bike image over the red line
             if self.dir == (2*x, 0):#Right
                 screen.blit(playerOneR, (self.x-20, self.y-10))
             if self.dir == (0, -2*x):#Up
@@ -49,7 +49,7 @@ class Player:
 
         elif self.col == BLUE:
             if self.dir == (-2*y, 0):#Left good
-                screen.blit(playerTwoL, (self.x-30, self.y-10))
+                screen.blit(playerTwoL, (self.x-30, self.y-10))#draw the blue bike image over the blue line
             if self.dir == (2*y, 0):#Right
                 screen.blit(playerTwoR, (self.x-10, self.y-10))
             if self.dir == (0, -2*y):#Up
@@ -58,24 +58,24 @@ class Player:
                 screen.blit(playerTwoD, (self.x-10, self.y-10))
 
     def __update__(self):
-            self.x += self.dir[0]
+            self.x += self.dir[0]#move the player based on what buttons the player presses
             self.y += self.dir[1]
 
 def new_game():
 
-    new_p1 = Player(50, 600 / 2, (2, 0), RED)
-    new_p2 = Player(600 - 50, 600 / 2, (-2, 0), BLUE)
+    new_p1 = Player(50, 300, (2, 0), RED)#create player halfway through the screen with a certain color
+    new_p2 = Player(550, 300, (-2, 0), BLUE)
     return new_p1, new_p2
 
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((600, 600))#similar to creating a canvas in js
 
 clock = pygame.time.Clock()
 check_time = time.time()
 
-objects = list()
+objects = list()#creatin some arrays
 path = list()
-p1 = Player(50, (600) / 2, (2, 0), RED)  
-p2 = Player(600 - 50, (600) / 2, (-2, 0), BLUE)
+p1 = Player(50, 300, (2, 0), RED)  
+p2 = Player(550, 300, (-2, 0), BLUE)
 objects.append(p1)
 path.append((p1.rect, '1'))
 objects.append(p2)
@@ -85,21 +85,20 @@ player_score = [0, 0]
 
 wall_rects = [pygame.Rect([0, 60, 15, 600]) , pygame.Rect([0, 60, 600, 15]),\
               pygame.Rect([600 - 15, 60, 15, 600]),\
-              pygame.Rect([0, 600 - 15, 600, 15])]
+              pygame.Rect([0, 600 - 15, 600, 15])]#make walls that you can crash into
 
-new = False
 done = False
 
-x = 1
+x = 1#for player speed in x and y
 y = 1
 
 
 def load_screen():
     v = False
-    while v == False:
-        event = pygame.event.wait()
+    while v == False:#loop for load screen
+        event = pygame.event.wait()#wair for an event
 
-        screen.fill(BLACK) 
+        screen.fill(BLACK) #if you remove this you get really cool screen artifacting
 
         font = pygame.font.Font('freesansbold.ttf', 32) 
         text = font.render("Welcome To Tron", True, BLUE) 
@@ -114,27 +113,23 @@ def load_screen():
         screen.blit(text, textRect) 
         pygame.display.update()
 
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:#if key is pressed exit loop
             v = True    
 
-load_screen()
+load_screen()#calls screen
 
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # close button pressed
             done = True
         elif event.type == pygame.KEYDOWN:
-
-            if event.key == pygame.K_LSHIFT:
+            if event.key == pygame.K_LSHIFT:#double speed
                 x = 2
-                print("you could be boosting")
             if event.key == pygame.K_RSHIFT:
                 y = 2
-                print("you could be boosting")
-            
-          
+              
             if event.key == pygame.K_w:
-                objects[0].dir = (0, -2*x)
+                objects[0].dir = (0, -2*x)#change direction and speed depending on key
             elif event.key == pygame.K_s:
                 objects[0].dir = (0, 2*x)
             elif event.key == pygame.K_a:
@@ -153,21 +148,21 @@ while not done:
 
     screen.fill(BLACK) 
     tim = pygame.time.get_ticks()
-    if tim%50 == 0:
+    if tim%50 == 0:#end boost if furfilled, changes run to run to be interesting
         x = 1
         y = 1
 
-    for r in wall_rects: pygame.draw.rect(screen, (50, 50, 50), r, 0) 
+    for r in wall_rects: pygame.draw.rect(screen, (50, 50, 50), r, 0) #draw wals
 
     for o in objects:
 
         if (o.rect, '1') in path or (o.rect, '2') in path \
-           or o.rect.collidelist(wall_rects) > -1:
+           or o.rect.collidelist(wall_rects) > -1:#if crashes into wall or trail
             if (time.time() - check_time) >= 0.1:
                 check_time = time.time()
 
                 if o.col == RED:
-                    player_score[1] += 1
+                    player_score[1] += 1#if red won give em a point otherwise give blue a point
                 else: player_score[0] += 1
 
                 new = True
@@ -176,7 +171,7 @@ while not done:
                 path = [(p1.rect, '1'), (p2.rect, '2')]
         else: 
             if o.col == BLUE:
-                path.append((o.rect, '1'))
+                path.append((o.rect, '1'))#to draw trail
             else:
                 path.append((o.rect, '2'))
 
@@ -188,17 +183,17 @@ while not done:
             path = []
             new = False
             break
-        if r[1] == '1': pygame.draw.rect(screen, RED, r[0], 1)
+        if r[1] == '1': pygame.draw.rect(screen, RED, r[0], 1)#draw aditional paths
         else: pygame.draw.rect(screen, BLUE, r[0], 1)
     
-    font = pygame.font.Font('freesansbold.ttf', 32) 
+    font = pygame.font.Font('freesansbold.ttf', 32) #deaw red score in red
     score1 = "{}".format(player_score[1])
     text = font.render(score1, True, RED) 
     textRect = text.get_rect() 
     textRect.center = (40, 100) 
     screen.blit(text, textRect) 
 
-    score = ": {}".format(player_score[0])
+    score = ": {}".format(player_score[0])#draw blue score in blue
     text = font.render(score, True, BLUE) 
     textRect = text.get_rect() 
     textRect.center = (70, 100) 
