@@ -92,7 +92,6 @@ done = False
 x = 1#for player speed in x and y
 y = 1
 
-
 def load_screen():
     v = False
     while v == False:#loop for load screen
@@ -111,10 +110,41 @@ def load_screen():
         textRect = text.get_rect() 
         textRect.center = (300, 300) 
         screen.blit(text, textRect) 
+
+        font = pygame.font.Font('freesansbold.ttf', 16) 
+        text = font.render("f for rules", True, BLUE) 
+        textRect = text.get_rect() 
+        textRect.center = (50, 20) 
+        screen.blit(text, textRect) 
         pygame.display.update()
 
         if event.type == pygame.KEYDOWN:#if key is pressed exit loop
-            v = True    
+            if event.key == pygame.K_f:
+                rules()
+            else:
+                v = True    
+def rules():
+    v = False
+    while v == False:#loop for load screen
+        event = pygame.event.wait()#wair for an event
+        screen.fill(BLACK) #if you remove this you get really cool screen artifacting
+
+        font = pygame.font.Font('freesansbold.ttf', 16) 
+        text = font.render("use WASD or Arrow keys to move and Shift to boost", True, BLUE) 
+        textRect = text.get_rect() 
+        textRect.center = (300, 200) 
+        screen.blit(text, textRect) 
+
+        font = pygame.font.Font('freesansbold.ttf', 16) 
+        text = font.render("Press any key to play", True, BLUE) 
+        textRect = text.get_rect() 
+        textRect.center = (300, 300) 
+        screen.blit(text, textRect) 
+
+        pygame.display.update()
+
+        if event.type == pygame.KEYDOWN:#if key is pressed exit loop
+            v = True
 
 load_screen()#calls screen
 
