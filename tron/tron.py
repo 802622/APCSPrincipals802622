@@ -146,6 +146,32 @@ def rules():
         if event.type == pygame.KEYDOWN:#if key is pressed exit loop
             v = True
 
+def endGame():
+    v = False
+    player_score[1] = 0
+    player_score[0] = 0
+    while v == False:#loop for load screen
+        event = pygame.event.wait()#wair for an event
+        screen.fill(BLACK) #if you remove this you get really cool screen artifacting
+
+        font = pygame.font.Font('freesansbold.ttf', 32) 
+        text = font.render("its all over", True, BLUE) 
+        textRect = text.get_rect() 
+        textRect.center = (300, 200) 
+        screen.blit(text, textRect) 
+
+        font = pygame.font.Font('freesansbold.ttf', 16) 
+        text = font.render("Press any key to play again", True, BLUE) 
+        textRect = text.get_rect() 
+        textRect.center = (300, 300) 
+        screen.blit(text, textRect) 
+        
+        pygame.display.update()
+
+        if event.type == pygame.KEYDOWN:#if key is pressed exit loop
+            v = True
+            load_screen()
+
 load_screen()#calls screen
 
 while not done:
@@ -229,6 +255,10 @@ while not done:
     textRect.center = (70, 100) 
     screen.blit(text, textRect) 
 
+    if player_score[1] == 5:
+        endGame()
+    elif player_score[0] == 5:
+        endGame()
 
     pygame.display.update() 
     clock.tick(60)  
