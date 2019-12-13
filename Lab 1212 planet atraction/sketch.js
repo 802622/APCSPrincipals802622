@@ -1,6 +1,6 @@
 //  Nayan Smuek
-// 	8/21/19
-//  Project 8/22
+// 	12/21/19
+//  Project 1212
 
 var ships = [];
 var planet;
